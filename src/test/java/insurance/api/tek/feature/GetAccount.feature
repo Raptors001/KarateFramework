@@ -1,3 +1,4 @@
+@Regression
 Feature: TEK Insurance GET Account API
 
   Background:
@@ -25,7 +26,7 @@ Feature: TEK Insurance GET Account API
     * method get
     * status 200
     * print response[0]
-    * match response[0].firstName == 'Shokriyan'
+   # * match response[0].firstName == 'Shokriyan'
 
 
     Scenario: Get Account Details

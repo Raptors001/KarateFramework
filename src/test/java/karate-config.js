@@ -6,7 +6,7 @@ function fn() {
   }
   var config = {
     env: env,
-    myVarName: 'someValue'
+    appUrl: 'https://qa.insurance-api.tekschool-students.com'
   }
   if (env == 'dev') {
     // customize

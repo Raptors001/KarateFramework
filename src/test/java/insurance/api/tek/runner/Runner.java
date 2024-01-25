@@ -6,6 +6,6 @@ public class Runner {
 
     @Karate.Test
     Karate testTags() {
-        return Karate.run("classpath:insurance/api/tek/feature").tags("@GenerateToken").relativeTo(getClass());
+        return Karate.run("classpath:insurance/api/tek/feature").tags("@Regression").relativeTo(getClass());
     }
 }

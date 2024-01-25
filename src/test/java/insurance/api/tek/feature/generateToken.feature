@@ -1,3 +1,4 @@
+@Regression
 Feature: Generate Access Token for TEK Insurance Application
 
   #url we pass base url
@@ -9,7 +10,7 @@ Feature: Generate Access Token for TEK Insurance Application
   # response this keyword prints API Response.
 
   Background:
-    Given url 'https://qa.insurance-api.tekschool-students.com'
+    Given url appUrl
 
   @GenerateToken
   Scenario: Generate Token

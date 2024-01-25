@@ -1,3 +1,4 @@
+@Regression
 Feature: TEK Insurance Post Account API
 
   Background:
@@ -42,7 +43,7 @@ Feature: TEK Insurance Post Account API
     #this line of the code will store the JSON response into a json file for reusability
     * karate.write(response, 'createdAccount.json')
 
-
+@postPhone
   Scenario:  Post Phone - Primary Person
     * def generator = Java.type('insurance.api.tek.utility.DataGenerator')
     * def phoneNumber = generator.getPhoneNumber()
@@ -65,6 +66,8 @@ Feature: TEK Insurance Post Account API
     * status 201
     * print response
     * match response.phoneNumber == phoneNumber
+    * def phoneId = response.id
+    * print phoneId
 
 
 
