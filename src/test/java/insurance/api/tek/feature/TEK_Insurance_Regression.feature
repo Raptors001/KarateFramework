@@ -1,3 +1,4 @@
+@RegressionTest
 Feature: TEK Insurance Regression Suite
 
   Background:
@@ -36,7 +37,66 @@ Feature: TEK Insurance Regression Suite
   """
   * method post
   * status 201
+  * match response.email == email
   * print response
-    # Scenario: Post a car account
-    # Scenario: update the car
-    # Scenario: Delete the car
+  * karate.write(response, 'RegressionCreatedAccount.json')
+
+@postCar
+  Scenario: Post a car - Primary Person Account
+  * path '/api/accounts/add-account-car'
+  * def primarypersonIdValue = read('file:./target/RegressionCreatedAccount.json')
+  * param primaryPersonId = primarypersonIdValue.id
+  * request
+  """
+  {
+  "make": "BMW",
+  "model": "XM",
+  "year": "2024",
+  "licensePlate": "Raptors124"
+}
+  """
+  * method post
+  * status 201
+  * print response
+  * match response.licensePlate == 'Raptors124'
+ * karate.write(response, 'RegressionPostCar.json')
+
+
+    Scenario: put (Update) a car - Primary Person Account
+      * path '/api/accounts/update-account-car'
+      * def extractCarId = read('file:./target/RegressionPostCar.json')
+      * def carIdValue = extractCarId.id
+      * def primarypersonIdValue = read('file:./target/RegressionCreatedAccount.json')
+      * param primaryPersonId = primarypersonIdValue.id
+      * request
+      """
+      {
+  "id": #(carIdValue),
+  "make": "Audi",
+  "model": "Q7",
+  "year": "2024",
+  "licensePlate": "Raptors-Cali2024"
+}
+      """
+      * method put
+      * status 202
+      * print response
+
+
+      Scenario: Delete a car - Primary Person
+        * path '/api/accounts/delete-car'
+        * def extractCarId = read('file:./target/RegressionPostCar.json')
+        * def carIdValue = extractCarId.id
+        * param carId = carIdValue
+        * method delete
+        * status 202
+        * print response
+        * match response.message contains 'had been deleted'
+
+
+
+
+
+
+
+
