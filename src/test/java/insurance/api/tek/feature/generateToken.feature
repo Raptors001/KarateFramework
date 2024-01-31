@@ -8,8 +8,6 @@ Feature: Generate Access Token for TEK Insurance Application
   #status validates the response status code expected Response code
   #print used for printing the response or variable into console
   # response this keyword prints API Response.
-  # this is for git lecture
-   
 
   Background:
     Given url appUrl
